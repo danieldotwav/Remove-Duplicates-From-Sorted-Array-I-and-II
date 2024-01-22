@@ -2,9 +2,12 @@
 
 This Java project implements an efficient algorithm to remove duplicate numbers from a sorted array in-place, preserving the order of the elements. The key challenge addressed is modifying the array so that the first k elements contain the unique elements as they originally appeared in the array.
 
+The second method ```removeDuplicatesII()``` removes duplicates from a sorted array while allowing a specified number of duplicates for each unique element.
+
+
 ## Algorithms
 
-### **1. Remove Duplicates from Sorted Array**
+### **1. Remove Duplicates I**
 
 #### Logic
 
