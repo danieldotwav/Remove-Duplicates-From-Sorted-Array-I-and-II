@@ -76,3 +76,72 @@ System.out.println(removeDuplicatesI(new int[] {1, 1, 2, 3, 3, 3, 4, 5, 5, 6}));
 System.out.println(removeDuplicatesI(new int[] {7, 7, 7, 7, 7})); // Expected Output: 1
 
 ```
+
+### **2. Remove Duplicates II**
+
+#### Logic
+- Processes a sorted array to remove duplicates.
+- Maintains a counter for duplicates.
+- Shifts unique elements to the beginning of the array.
+
+#### Complexity Analysis
+- **Time Complexity:** O(n) - Processes each element once.
+- **Space Complexity:** O(1) - In-place operation with constant space.
+
+### Code Snippet
+
+```java
+static int removeDuplicatesII(int[] nums) {
+    // Handle empty arrays
+    int arrSize = nums.length;
+    if (arrSize == 0) { return 0; }
+
+    // Adjust the desired frequency of allowed duplicates
+    int LIMIT = 2;
+
+    // Store the first number
+    int currentUniqueNum = nums[0];
+    int uniqueNumPtr = 0;
+    int duplicateCounter = 1;
+
+    for (int i = 1; i < arrSize; ++i) {
+        if (nums[i] != currentUniqueNum) {
+            duplicateCounter = 1;
+            currentUniqueNum = nums[i];
+            nums[++uniqueNumPtr] = currentUniqueNum;
+        }
+        else {
+            if (duplicateCounter < LIMIT) {
+                currentUniqueNum = nums[i];
+                nums[++uniqueNumPtr] = currentUniqueNum;
+            }
+            ++duplicateCounter;
+        }
+    }
+    return uniqueNumPtr + 1;
+}
+```
+
+### Test Cases
+
+The following test cases are designed to validate the functionality of the removeDuplicatesI method. Each test case includes the input array and its expected output after removing duplicates.
+
+```java
+// Test case 1: Non-consecutive duplicates
+System.out.println(removeDuplicatesII(new int[] {1, 2, 2, 3, 3, 4})); // Expected Output: 6
+
+// Test case 2: Consecutive duplicates
+System.out.println(removeDuplicatesII(new int[] {1, 1, 2, 2, 2, 3, 3, 3, 4})); // Expected Output: 7
+
+// Test case 3: No duplicates
+System.out.println(removeDuplicatesII(new int[] {1, 2, 3, 4, 5})); // Expected Output: 5
+
+// Test case 4: Empty array
+System.out.println(removeDuplicatesII(new int[] {})); // Expected Output: 0
+
+// Test case 5: All elements are the same
+System.out.println(removeDuplicatesII(new int[] {2, 2, 2, 2, 2})); // Expected Output: 2
+
+// Test case 6: Single element array
+System.out.println(removeDuplicatesII(new int[] {7})); // Expected Output: 1
+```
